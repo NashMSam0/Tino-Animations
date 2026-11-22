@@ -1,5 +1,25 @@
-<section class="audio-page"><div class="eyebrow">THE AFRICAN IMAGINATION LIBRARY / AUDIO</div><h1>Listen to the story.</h1><p>Hear Tawanda's complete journey across all four chapters.</p>
-<nav class="audio-chapters">@for(c of chapters;track c.number){<button (click)="chapter(c.number)" [class.active]="scene().chapter===c.number"><small>CHAPTER {{c.number}}</small><strong>{{c.title}}</strong></button>}</nav>
-<div class="audio-grid"><section class="audio-player"><div class="cover"><span>THE LAST<br>ORDINARY<br>MOMENT</span><small>AN AFRICAN IMAGINATION LIBRARY AUDIO EDITION</small></div><div class="now">CHAPTER {{scene().chapter}} · PAGE {{scene().page}}<h2>{{scene().title}}</h2><p>{{scene().line}}</p></div><div class="buttons"><button (click)="seek(i()-1)" aria-label="Previous passage">◀|</button><button class="play" (click)="toggle()">{{playing()?'Pause':'Play narration'}}</button><button (click)="seek(i()+1)" aria-label="Next passage">|▶</button></div><div class="options"><label>Narrator<select [value]="voice()" (change)="onVoice($event)">@for(v of voices();track v.name){<option [value]="v.name">{{v.name}} · {{v.lang}}</option>}</select></label><label>Speed<select [value]="rate()" (change)="onRate($event)"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label></div><div class="progress">Passage {{i()+1}} of {{scenes.length}}<div><i [style.width.%]="(i()+1)/scenes.length*100"></i></div></div></section>
-<aside class="passages"><h2>{{scene().setting}}</h2>@for(s of items();track s.id){<button [class.current]="scene().id===s.id" (click)="seek(scenes.indexOf(s))"><img [src]="s.image" alt=""><span><small>PAGE {{s.page}}</small><strong>{{s.title}}</strong></span><b>{{scene().id===s.id?'NOW':'▶'}}</b></button>}</aside></div>
-<section class="transcript"><label><input type="checkbox" [checked]="captions()" (change)="captions.set(!captions())"> Show narration text</label>@if(captions()){<blockquote>{{scene().line}}</blockquote>}<small>Uses a voice installed in your browser. Recorded studio narration is not included yet.</small></section><p><a routerLink="/animation">Watch the 2D cartoon →</a></p>@if(notice()){<p role="status">{{notice()}}</p>}</section>
+<section class="audio-page">
+  <div class="eyebrow">THE AFRICAN IMAGINATION LIBRARY / AUDIO</div>
+  <h1>Listen to the story.</h1>
+  <p>Hear Tawanda's complete journey across all four chapters.</p>
+  <nav class="audio-chapters">@for(c of chapters;track c.number){<button (click)="chapter(c.number)" [class.active]="scene().chapter===c.number"><small>CHAPTER {{c.number}}</small><strong>{{c.title}}</strong></button>}</nav>
+  <div class="audio-grid">
+    <section class="audio-player">
+      <div class="cover"><span>THE LAST<br>ORDINARY<br>MOMENT</span><small>AN AFRICAN IMAGINATION LIBRARY AUDIO EDITION</small></div>
+      <div class="now">CHAPTER {{scene().chapter}} � PAGE {{scene().page}}<h2>{{scene().title}}</h2><p>{{scene().line}}</p></div>
+      <div class="buttons"><button (click)="seek(i()-1)" aria-label="Previous passage">|<</button><button class="play" (click)="toggle()">{{playing()?'Pause':'Play narration'}}</button><button (click)="seek(i()+1)" aria-label="Next passage">>|</button></div>
+      <div class="options">
+        <label>Voice style<select [value]="voiceStyle()" (change)="onVoiceStyle($event)"><option value="woman">Woman narrator</option><option value="man">Man narrator</option></select></label>
+        <label>Available voice<select [value]="voice()" (change)="onVoice($event)">@for(v of voicesForStyle();track v.name){<option [value]="v.name">{{v.name}} � {{v.lang}}</option>}</select></label>
+        <label>Speed<select [value]="rate()" (change)="onRate($event)"><option value="0.75">0.75x</option><option value="1">1x</option><option value="1.25">1.25x</option><option value="1.5">1.5x</option></select></label>
+      </div>
+      <p class="voice-note">Narration uses voices installed on your device. Voice quality and the available male or female choices vary by browser; enhanced or online voices often sound more natural.</p>
+      <div class="progress">Passage {{i()+1}} of {{scenes.length}}<div><i [style.width.%]="(i()+1)/scenes.length*100"></i></div></div>
+    </section>
+    <aside class="passages"><h2>{{scene().setting}}</h2>@for(s of items();track s.id){<button [class.current]="scene().id===s.id" (click)="seek(scenes.indexOf(s))"><img [src]="s.image" alt=""><span><small>PAGE {{s.page}}</small><strong>{{s.title}}</strong></span><b>{{scene().id===s.id?'NOW':'>'}}</b></button>}</aside>
+  </div>
+  <section class="transcript"><label><input type="checkbox" [checked]="captions()" (change)="captions.set(!captions())"> Show narration text</label>@if(captions()){<blockquote>{{scene().line}}</blockquote>}<small>Uses a voice installed in your browser. Recorded studio narration is not included yet.</small></section>
+  <p><a routerLink="/animation">Watch the 2D cartoon </a></p>
+  @if(notice()){<p class="voice-status" role="status">{{notice()}}</p>}
+</section>
+
