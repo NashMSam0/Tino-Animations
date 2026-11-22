@@ -1,0 +1,22 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/
+node_modules/
+TestResults/
+*.user
+*.log
+.env*
+!*.example
+.transfer-tino/
+
+
+frontend/.angular/
+frontend/.npm-cache/
+frontend/.npm-logs/
+frontend/dist/
+dist/
+*.zip
+
+# Local developer connection settings
+**/appsettings.Development.json

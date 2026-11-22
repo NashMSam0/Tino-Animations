@@ -1,0 +1,30 @@
+{
+  "name": "tino-frontend",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "ng serve --host 127.0.0.1 --port 4200 --proxy-config proxy.conf.json",
+    "build": "ng build",
+    "check": "tsc --noEmit -p tsconfig.app.json",
+    "build:preview": "node scripts/build-preview.mjs",
+    "preview": "node scripts/serve-preview.mjs",
+    "test:animation": "node --test tests/animation.test.mjs"
+  },
+  "dependencies": {
+    "@angular/common": "22.2.2",
+    "@angular/compiler": "22.2.2",
+    "@angular/core": "22.2.2",
+    "@angular/platform-browser": "22.2.2",
+    "@angular/router": "22.2.2",
+    "@angular/service-worker": "22.2.2",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1"
+  },
+  "devDependencies": {
+    "@angular/build": "22.2.2",
+    "@angular/cli": "22.2.2",
+    "@angular/compiler-cli": "22.2.2",
+    "typescript": "6.0.3"
+  },
+  "type": "module"
+}

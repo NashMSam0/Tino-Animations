@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "dist/tino/browser",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

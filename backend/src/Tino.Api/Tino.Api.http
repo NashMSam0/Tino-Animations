@@ -1,0 +1,14 @@
+@Tino_Api_HostAddress = http://localhost:5199
+
+GET {{Tino_Api_HostAddress}}/api/v1/health/live
+Accept: application/json
+
+###
+GET {{Tino_Api_HostAddress}}/api/v1/health/ready
+
+###
+GET {{Tino_Api_HostAddress}}/api/v1/stories?page=1&pageSize=20
+
+###
+GET {{Tino_Api_HostAddress}}/api/v1/stories/not-published
+

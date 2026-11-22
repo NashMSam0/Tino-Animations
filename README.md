@@ -1,4 +1,4 @@
-# Tino - African Stories
+# Tino — African Stories
 ASP.NET Core 10 backend for an Angular PWA covering books, audio, animation and learning.
 
 ## Status
@@ -54,4 +54,3 @@ The earlier backend-only status describes the initial milestone; frontend progre
 ## Animation milestone
 The /animation page now has a playable motion storyboard and local video preview. See docs/ANIMATION.md and docs/ANIMATION_PRODUCTION.md.
 For an optimised production build, run `npm ci` and `npm run build` in `frontend/`. The output is `frontend/dist/tino/browser`.
-
