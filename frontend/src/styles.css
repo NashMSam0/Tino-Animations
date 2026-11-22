@@ -15,3 +15,9 @@
 @media(max-width:900px){.detail-cover{height:410px}}
 @media(max-width:600px){.cover-art-card{aspect-ratio:3/4;height:auto}.detail-cover{height:390px;max-width:320px;width:100%;margin:auto}.mini-cover-art{width:88px;height:125px}}
 .cover-art-card:before,.cover-art-card:after{display:none}
+
+
+/* The African Imagination Library brand and Three.js story-spark backdrop */
+.brand{gap:9px;white-space:nowrap}.brand-icon{font-size:30px;line-height:1;color:var(--gold)}.brand-name{font:600 15px/1.05 Georgia,serif;letter-spacing:.1px;color:var(--ink)}.brand .brand-bottom{font:700 9px/1.25 'DM Sans',Arial,sans-serif;letter-spacing:1.2px;text-transform:uppercase;margin-top:4px;color:var(--wine)}.demo-banner{flex-wrap:wrap;row-gap:4px}.brand-tagline{font:500 18px Georgia,serif;color:var(--wine);margin:-10px 0 -10px!important}.hero-art{isolation:isolate}.hero-art>img{position:absolute;inset:0;z-index:0}.hero-art:after{z-index:1;pointer-events:none}.hero-art app-story-backdrop{z-index:2;opacity:.82}.hero-art .art-label,.hero-art .art-corner{z-index:3}.mission{z-index:0}.value-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;max-width:800px}.value-list span{position:relative;z-index:1;padding:9px 12px;border:1px solid #d8cbb5;border-radius:99px;background:#f8f5ef;color:#51483b;font-size:10px}.footer-brand{max-width:250px}.hero-note{line-height:1.6}
+@media(max-width:900px){header .brand-name{font-size:14px}.brand .brand-bottom{font-size:8px;letter-spacing:1px}}
+@media(max-width:600px){.demo-banner{padding-inline:8px}.brand-tagline{font-size:16px}.hero-note{font-size:10px}.value-list{gap:7px}.value-list span{font-size:9px;padding:8px 10px}}

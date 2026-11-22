@@ -1,5 +1,5 @@
 <section class="animation-page">
-<div class="animation-top"><div><div class="eyebrow">AFRICAN STORIES / ANIMATION</div><h1>Stories, set in motion.</h1></div><span class="studio-badge"><i></i> THE ANIMATION STUDIO</span></div>
+<div class="animation-top"><div><div class="eyebrow">THE AFRICAN IMAGINATION LIBRARY / ANIMATION</div><h1>Stories, set in motion.</h1></div><span class="studio-badge"><i></i> THE ANIMATION STUDIO</span></div>
 <nav class="chapter-nav" aria-label="Story chapters">@for(c of chapters;track c.number){<button (click)="seek(c.start)" [class.active]="scene().chapter===c.number" [attr.aria-current]="scene().chapter===c.number?'step':null"><small>CHAPTER {{c.number}}</small><strong>{{c.title}}</strong></button>}</nav><div class="watch-layout">
 <div class="watch-main">
 <div #screen class="cinema" tabindex="0" aria-label="Story animatic player. Space to play or pause. Arrow keys seek five seconds." [class.running]="playing()" [class]="'cinema scene-'+scene().visual+' page-'+scene().page">

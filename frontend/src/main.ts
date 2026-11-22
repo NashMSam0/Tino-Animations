@@ -1,5 +1,6 @@
 import {Audio} from './audio.js';
 import {Animation} from './animation.js';
+import {StoryBackdrop} from './story-backdrop.js';
 import {DatePipe} from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { Component, Injectable, signal, computed, inject, isDevMode, HostListener } from '@angular/core';
@@ -18,7 +19,7 @@ const samples:Story[] = [
 ];
 @Injectable({providedIn:'root'}) class Stories {
  http=inject(HttpClient); all=signal<Story[]>(samples); status=signal('Connecting to the catalogue…'); query=signal(''); saved=signal<string[]>(this.load('tino.saved',[])); cart=signal<string[]>(this.load('tino.cart',[])); purchased=signal<string[]>(this.load('tino.purchases',[])); membershipUntil=signal<number>(this.load('tino.subscription',0)); page=signal<number>(this.load('tino.page',20)); notice=signal('');
- readonly demoBookPrice=40; readonly demoSubscriptionPrice=100; readonly currency='ZMW';
+ readonly demoBookPrice=40; readonly demoSubscriptionPrice=100; readonly currency='DEMO';
  constructor(){this.refresh();}
  load<T>(key:string,fallback:T):T {try {const v=JSON.parse(localStorage.getItem(key)||'null'); if(key==='tino.saved'||key==='tino.cart'||key==='tino.purchases') return (Array.isArray(v)&&v.every(x=>typeof x==='string')?v:fallback) as T; if(key==='tino.subscription')return (typeof v==='number'&&Number.isFinite(v)?v:fallback) as T; return (Number.isInteger(v)&&v>=1&&v<=21?v:fallback) as T;}catch{return fallback;}}
  persist(key:string,value:unknown){try{localStorage.setItem(key,JSON.stringify(value));}catch{this.notice.set('Browser storage is unavailable. Your changes will last for this visit.');}}
@@ -36,7 +37,7 @@ isMembershipActive(){return this.membershipUntil()>Date.now();}
  coverImage(id:string){if(id==='sample-home')return '/animation/pages/page-01.jpeg';if(id==='sample-moon')return '/covers/under-the-same-moon.svg';if(id==='sample-river')return '/covers/where-the-river-sings.svg';return '';}
  bookPageUrl(page:number){return '/animation/pages/page-'+String(page).padStart(2,'0')+'.jpeg';} turn(page:number){this.page.set(page);this.persist('tino.page',page);}
 }
-@Component({selector:'app-experience',standalone:true,imports:[RouterLink,DatePipe],templateUrl:'./experience.html'})
+@Component({selector:'app-experience',standalone:true,imports:[RouterLink,DatePipe,StoryBackdrop],templateUrl:'./experience.html'})
 class Experience {
  store=inject(Stories);router=inject(Router);url=signal(this.router.url.split('?')[0]);mode=signal('text');font=signal(21);
  section=computed(()=>this.url().split('/')[1]||'home');
@@ -50,12 +51,12 @@ class Experience {
 }
 @Component({selector:'app-root',standalone:true,imports:[RouterLink,RouterOutlet],template:`
 <a class="skip" href="#main">Skip to content</a>
-<div class="demo-banner"><strong>DEMO STORE</strong><span>Simulated purchases only · no real charges</span></div>
-<header><a class="brand" routerLink="/"><span class="brand-icon">◧</span><span>african<span class="brand-bottom">STORIES</span></span></a>
+<div class="demo-banner"><strong>DEMO STORE</strong><span>Zimbabwe first &middot; English first &middot; Shona and Ndebele planned</span><span>Simulated purchases only · no real charges</span></div>
+<header><a class="brand" routerLink="/" aria-label="The African Imagination Library home"><span class="brand-icon" aria-hidden="true">&#10022;</span><span class="brand-name"><span>The African</span><span class="brand-bottom">Imagination Library</span></span></a>
 <nav aria-label="Main navigation"><a routerLink="/" [class.active]="path()==='/'">Discover</a><a routerLink="/explore" [class.active]="path()==='/explore'">Books</a><a routerLink="/membership" [class.active]="path()==='/membership'">Membership</a><a routerLink="/audio" [class.active]="path()==='/audio'">Audio</a><a routerLink="/animation" [class.active]="path()==='/animation'">Animation</a><a routerLink="/learning" [class.active]="path()==='/learning'">Learning</a></nav>
 <div class="header-actions"><a class="cart-link" routerLink="/cart" [attr.aria-label]="'Cart, '+store.cart().length+' books'">Cart <b>{{store.cart().length}}</b></a><a class="library-link" routerLink="/library">My library <b>{{store.accessibleCount()}}</b></a></div></header>
 <main id="main"><router-outlet/></main>
-<footer><a class="footer-brand" routerLink="/">african stories.</a><p>Our voices. Our worlds. Our stories.</p><span>Built to keep stories alive.</span><a href="http://localhost:5199/swagger" target="_blank" rel="noopener">Developer API ↗</a></footer>
+<footer><a class="footer-brand" routerLink="/">The African Imagination Library</a><p>Where African Stories Come Alive</p><span>Zimbabwe first &middot; African stories for curious young readers</span></footer>
 @if(store.notice()){<div class="toast" role="status">{{store.notice()}}<button (click)="store.notice.set('')" aria-label="Dismiss notification">×</button></div>}
 `})
 class App {store=inject(Stories);router=inject(Router);path=signal(this.router.url);constructor(){this.router.events.pipe(takeUntilDestroyed()).subscribe(e=>{if(e instanceof NavigationEnd)this.path.set(e.urlAfterRedirects);});}}

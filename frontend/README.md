@@ -34,3 +34,9 @@ SQL connection, Identity, rights/editions/page API, purchase entitlements, media
 
 ## Animation milestone
 /animation now includes a playable 75-second motion storyboard with captions, optional browser narration and saved progress. See docs/ANIMATION.md and docs/ANIMATION_PRODUCTION.md. Run npm run test:animation for the six timeline tests. This supersedes the earlier animation-placeholder description; the full film and cloud media service remain pending.
+
+
+## Brand and motion
+The customer-facing brand is The African Imagination Library, with the tagline “Where African Stories Come Alive.” The homepage positions Zimbabwe as the initial market, English as the first language, and Shona and Ndebele as planned additions. Demo prices are marked as DEMO amounts rather than presented as a real currency.
+
+The homepage hero loads a small Three.js WebGL animation of drifting story sparks and 3D stars. It loads on demand, pauses when the tab is hidden, caps its rendering rate, honors reduced-motion preferences, and hides itself when WebGL is unavailable.
