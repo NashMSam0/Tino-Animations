@@ -17,12 +17,12 @@ const providedStories:Story[] = [
  {id:'debt-ocean',slug:'the-debt-deeper-than-an-ocean',title:'The Debt Deeper Than an Ocean',synopsis:'A 17-page book supplied for the library.',theme:'ocean',tag:'Digital book',sample:false,pageCount:17,contentReady:false}
 ];
 @Injectable({providedIn:'root'}) class Stories {
- http=inject(HttpClient); all=signal<Story[]>(providedStories); status=signal('Connecting to the catalogue.'); query=signal(''); saved=signal<string[]>(this.load('tino.saved',[])); cart=signal<string[]>(this.load('tino.cart',[])); purchased=signal<string[]>(this.load('tino.purchases',[])); membershipUntil=signal<number>(this.load('tino.subscription',0)); page=signal<number>(this.load('tino.page',20)); notice=signal('');
+ http=inject(HttpClient); all=signal<Story[]>(providedStories); status=signal('Connecting to the catalogue…'); query=signal(''); saved=signal<string[]>(this.load('tino.saved',[])); cart=signal<string[]>(this.load('tino.cart',[])); purchased=signal<string[]>(this.load('tino.purchases',[])); membershipUntil=signal<number>(this.load('tino.subscription',0)); page=signal<number>(this.load('tino.page',20)); notice=signal('');
  readonly demoBookPrice=40; readonly demoSubscriptionPrice=100; readonly currency='DEMO';
  constructor(){this.refresh();}
  load<T>(key:string,fallback:T):T {try {const v=JSON.parse(localStorage.getItem(key)||'null'); if(key==='tino.saved'||key==='tino.cart'||key==='tino.purchases') return (Array.isArray(v)&&v.every(x=>typeof x==='string')?v:fallback) as T; if(key==='tino.subscription')return (typeof v==='number'&&Number.isFinite(v)?v:fallback) as T; return (Number.isInteger(v)&&v>=1&&v<=21?v:fallback) as T;}catch{return fallback;}}
  persist(key:string,value:unknown){try{localStorage.setItem(key,JSON.stringify(value));}catch{this.notice.set('Browser storage is unavailable. Your changes will last for this visit.');}}
- refresh(){this.status.set('Connecting to the catalogue.');this.http.get<{items:Story[]}>(`${apiBaseUrl}/api/v1/stories?pageSize=100`).pipe(timeout(6000)).subscribe({next:r=>{const live=r.items.map(s=>({...s,theme:'earth',tag:'Published story',sample:false,contentReady:true}));this.all.set([...live,...providedStories]);this.status.set(live.length?'Live catalogue connected � supplied books included':'Your supplied books');},error:()=>this.status.set('Your supplied books � live catalogue unavailable')});}
+ refresh(){this.status.set('Connecting to the catalogue…');this.http.get<{items:Story[]}>(`${apiBaseUrl}/api/v1/stories?pageSize=100`).pipe(timeout(6000)).subscribe({next:r=>{const live=r.items.map(s=>({...s,theme:'earth',tag:'Published story',sample:false}));this.all.set([...live,...providedStories]);this.status.set(live.length?'Live catalogue connected · featured story included':'Catalogue connected · featured story shown');},error:()=>this.status.set('Your featured story · live catalogue unavailable')});}
  toggle(id:string){this.saved.update(a=>a.includes(id)?a.filter(x=>x!==id):[...a,id]);this.persist('tino.saved',this.saved());}
  addToCart(id:string){if(id!=='tawanda-story'||this.purchased().includes(id)){this.notice.set('This title is not available to purchase.');return;}if(!this.cart().includes(id)){this.cart.update(items=>[...items,id]);this.persist('tino.cart',this.cart());this.notice.set('Added to your cart. Demo price only; no charge will be made.');}}
  removeFromCart(id:string){this.cart.update(items=>items.filter(item=>item!==id));this.persist('tino.cart',this.cart());}
@@ -50,15 +50,14 @@ class Experience {
 }
 @Component({selector:'app-root',standalone:true,imports:[RouterLink,RouterOutlet],template:`
 <a class="skip" href="#main">Skip to content</a>
-<div class="demo-banner"><strong>DEMO STORE</strong><span>Zimbabwe first &middot; English first &middot; Shona and Ndebele planned</span><span>Simulated purchases only � no real charges</span></div>
+<div class="demo-banner"><strong>DEMO STORE</strong><span>Zimbabwe first &middot; English first &middot; Shona and Ndebele planned</span><span>Simulated purchases only · no real charges</span></div>
 <header><a class="brand" routerLink="/" aria-label="The African Imagination Library home"><span class="brand-icon" aria-hidden="true">&#10022;</span><span class="brand-name"><span>The African</span><span class="brand-bottom">Imagination Library</span></span></a>
 <nav aria-label="Main navigation"><a routerLink="/" [class.active]="path()==='/'">Discover</a><a routerLink="/explore" [class.active]="path()==='/explore'">Books</a><a routerLink="/membership" [class.active]="path()==='/membership'">Membership</a><a routerLink="/audio" [class.active]="path()==='/audio'">Audio</a><a routerLink="/animation" [class.active]="path()==='/animation'">Animation</a><a routerLink="/learning" [class.active]="path()==='/learning'">Learning</a></nav>
 <div class="header-actions"><a class="cart-link" routerLink="/cart" [attr.aria-label]="'Cart, '+store.cart().length+' books'">Cart <b>{{store.cart().length}}</b></a><a class="library-link" routerLink="/library">My library <b>{{store.accessibleCount()}}</b></a></div></header>
 <main id="main"><router-outlet/></main>
 <footer><a class="footer-brand" routerLink="/">The African Imagination Library</a><p>Where African Stories Come Alive</p><span>Zimbabwe first &middot; African stories for curious young readers</span></footer>
-@if(store.notice()){<div class="toast" role="status">{{store.notice()}}<button (click)="store.notice.set('')" aria-label="Dismiss notification">x</button></div>}
+@if(store.notice()){<div class="toast" role="status">{{store.notice()}}<button (click)="store.notice.set('')" aria-label="Dismiss notification">×</button></div>}
 `})
 class App {store=inject(Stories);router=inject(Router);path=signal(this.router.url);constructor(){this.router.events.pipe(takeUntilDestroyed()).subscribe(e=>{if(e instanceof NavigationEnd)this.path.set(e.urlAfterRedirects);});}}
 bootstrapApplication(App,{providers:[provideHttpClient(),provideRouter([{path:'',component:Experience},{path:'explore',component:Experience},{path:'library',component:Experience},{path:'cart',component:Experience},{path:'membership',component:Experience},{path:'story/:slug',component:Experience},{path:'read/:slug',component:Experience},{path:'audio',component:Audio},{path:'animation',component:Animation},{path:'learning',component:Experience},{path:'**',redirectTo:''}]),provideServiceWorker('ngsw-worker.js',{enabled:!isDevMode(),registrationStrategy:'registerWhenStable:30000'})]}).catch(console.error);
-
 
