@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">In Search of Gold, We Lost Diamonds</title>
+  <desc id="desc">A peaceful African village, a family in a green field, and distant mountains with a trail of gold.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#f8dfa1"/><stop offset="1" stop-color="#f1a968"/></linearGradient>
+    <linearGradient id="hills" x2="0" y2="1"><stop stop-color="#5e9e86"/><stop offset="1" stop-color="#2f705d"/></linearGradient>
+    <linearGradient id="field" x2="0" y2="1"><stop stop-color="#9cad53"/><stop offset="1" stop-color="#496c3f"/></linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="#f8f3df"/>
+  <rect x="52" y="52" width="796" height="1096" fill="url(#sky)"/>
+  <circle cx="730" cy="410" r="72" fill="#fff1b5"/>
+  <path d="M52 570 L245 360 L355 480 L505 300 L700 535 L848 410 V800 H52Z" fill="#7195a1"/>
+  <path d="M355 480 L505 300 L585 405 L530 384 L493 425 L450 390Z" fill="#e8ead7"/>
+  <path d="M52 600 Q230 520 400 600 T848 570 V1148 H52Z" fill="url(#hills)"/>
+  <path d="M52 735 Q230 650 430 735 T848 700 V1148 H52Z" fill="url(#field)"/>
+  <path d="M52 920 Q250 810 430 940 T848 860 V1148 H52Z" fill="#385f40"/>
+  <g fill="#e7c67f" stroke="#714d39" stroke-width="6">
+    <path d="M115 590 L190 530 L265 590 V655 H115Z"/><path d="M300 620 L370 565 L440 620 V682 H300Z"/><path d="M630 600 L700 545 L770 600 V665 H630Z"/>
+  </g>
+  <g fill="#a9523e"><path d="M98 590 L190 515 L282 590Z"/><path d="M283 620 L370 550 L457 620Z"/><path d="M613 600 L700 530 L787 600Z"/></g>
+  <g fill="#3b5e3e"><path d="M745 570 Q690 498 745 455 Q802 492 745 570Z"/><path d="M746 498 Q675 470 700 435 Q750 443 746 498Z"/><path d="M746 488 Q784 420 826 449 Q818 494 746 488Z"/><path d="M744 575 V665" stroke="#6e5137" stroke-width="18"/></g>
+  <path d="M382 1148 Q458 1010 447 895 Q438 820 512 750 Q568 690 556 625" fill="none" stroke="#d9c18a" stroke-width="34" opacity=".9"/>
+  <g transform="translate(225 760)">
+    <circle cx="92" cy="35" r="32" fill="#704635"/><path d="M48 74 Q92 49 136 74 L154 204 H32Z" fill="#d68a43"/>
+    <circle cx="198" cy="77" r="25" fill="#563c31"/><path d="M166 109 Q199 91 232 109 L244 205 H153Z" fill="#e1bd51"/>
+    <circle cx="283" cy="86" r="24" fill="#684434"/><path d="M250 117 Q283 100 316 117 L328 205 H240Z" fill="#a85654"/>
+    <path d="M34 204 H160 M155 204 H245 M240 204 H330" stroke="#342e29" stroke-width="10"/>
+  </g>
+  <g fill="#f5c247" stroke="#a96f22" stroke-width="5">
+    <circle cx="500" cy="777" r="20"/><circle cx="541" cy="798" r="18"/><circle cx="486" cy="817" r="17"/><circle cx="527" cy="839" r="19"/>
+  </g>
+  <rect x="52" y="52" width="796" height="1096" fill="none" stroke="#f8f3df" stroke-width="5"/>
+  <text x="450" y="145" text-anchor="middle" font-family="Georgia,serif" font-size="27" letter-spacing="5" fill="#25365d">THE AFRICAN IMAGINATION LIBRARY</text>
+  <text x="450" y="248" text-anchor="middle" font-family="Georgia,serif" font-size="57" font-weight="bold" fill="#14264f">IN SEARCH OF</text>
+  <text x="450" y="340" text-anchor="middle" font-family="Georgia,serif" font-size="91" font-weight="bold" fill="#d69316" stroke="#8b5c17" stroke-width="2">GOLD,</text>
+  <text x="450" y="415" text-anchor="middle" font-family="Georgia,serif" font-size="52" font-weight="bold" fill="#14264f">WE LOST DIAMONDS</text>
+  <text x="450" y="1082" text-anchor="middle" font-family="Georgia,serif" font-size="20" letter-spacing="4" fill="#f8f3df">A STORY ABOUT WHAT MATTERS MOST</text>
+</svg>
+
