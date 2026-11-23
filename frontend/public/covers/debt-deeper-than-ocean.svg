@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">The Debt Deeper Than an Ocean</title>
+  <desc id="desc">A symbolic ocean under a warm horizon, with a small boat moving across deep blue waves.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#f5c981"/><stop offset="1" stop-color="#d97a55"/></linearGradient>
+    <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#164d62"/><stop offset="1" stop-color="#082b3a"/></linearGradient>
+    <linearGradient id="light" x2="0" y2="1"><stop stop-color="#f8d89a" stop-opacity=".72"/><stop offset="1" stop-color="#f8d89a" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="900" height="520" fill="url(#sky)"/>
+  <circle cx="665" cy="315" r="92" fill="#ffe4a3"/>
+  <path d="M0 475 Q150 450 300 480 T600 474 T900 470 V1200 H0Z" fill="url(#sea)"/>
+  <path d="M570 410 L755 410 L665 1040Z" fill="url(#light)"/>
+  <g fill="none" stroke="#7db1af" stroke-opacity=".62" stroke-width="5">
+    <path d="M32 565 Q115 530 205 565 T390 565 T580 565 T770 565 T960 565"/>
+    <path d="M-12 672 Q95 632 215 672 T450 672 T685 672 T920 672"/>
+    <path d="M18 805 Q150 760 275 805 T530 805 T785 805 T1040 805"/>
+    <path d="M-30 945 Q105 900 250 945 T530 945 T810 945 T1090 945"/>
+  </g>
+  <g transform="translate(360 520)" fill="#f6e4bc">
+    <path d="M0 96 H230 Q205 152 118 161 Q33 151 0 96Z"/>
+    <path d="M113 8 V92 H194Z" fill="#f6e4bc"/>
+    <path d="M103 24 V93 H40Z" fill="#dfaa68"/>
+    <path d="M104 0 V171" stroke="#382f32" stroke-width="9"/>
+  </g>
+  <rect x="62" y="66" width="776" height="1068" rx="4" fill="none" stroke="#f7e8c5" stroke-opacity=".72" stroke-width="2"/>
+  <text x="450" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="26" letter-spacing="8" fill="#573b3b">THE AFRICAN IMAGINATION LIBRARY</text>
+  <text x="450" y="330" text-anchor="middle" font-family="Georgia,serif" font-size="64" font-weight="bold" fill="#342c35">THE DEBT</text>
+  <text x="450" y="405" text-anchor="middle" font-family="Georgia,serif" font-size="52" fill="#342c35">DEEPER THAN</text>
+  <text x="450" y="480" text-anchor="middle" font-family="Georgia,serif" font-size="66" font-weight="bold" fill="#342c35">AN OCEAN</text>
+  <text x="450" y="1060" text-anchor="middle" font-family="Georgia,serif" font-size="21" letter-spacing="5" fill="#f6e4bc">A STORY FROM THE AFRICAN IMAGINATION LIBRARY</text>
+</svg>
+
