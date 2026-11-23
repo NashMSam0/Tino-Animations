@@ -14,7 +14,8 @@ interface Story { id:string; title:string; slug:string; synopsis:string; theme:s
 const apiBaseUrl = (window.TINO_API_BASE_URL ?? '').replace(/\/+$/, '');
 const providedStories:Story[] = [
  {id:'tawanda-story',slug:'if-only-i-had-known',title:'The Last Ordinary Moment',synopsis:'A journey back home. A family finding its way to forgiveness. And a reminder that the stories we inherit can change the lives we build.',theme:'earth',tag:'Family & belonging',sample:false,pageCount:21,contentReady:true},
- {id:'debt-ocean',slug:'the-debt-deeper-than-an-ocean',title:'The Debt Deeper Than an Ocean',synopsis:'A 17-page book supplied for the library.',theme:'ocean',tag:'Digital book',sample:false,pageCount:17,contentReady:false}
+ {id:'debt-ocean',slug:'the-debt-deeper-than-an-ocean',title:'The Debt Deeper Than an Ocean',synopsis:'A 17-page book supplied for the library.',theme:'ocean',tag:'Digital book',sample:false,pageCount:17,contentReady:false},
+ {id:'gold-diamonds',slug:'in-search-of-gold-we-lost-diamonds',title:'In Search of Gold, We Lost Diamonds',synopsis:'A peaceful village leaves home in pursuit of gold, only to discover that wealth can cost time with family, friendships, peace and the simple blessings that made life happy.',theme:'gold',tag:'Page 1 supplied',sample:false,contentReady:false}
 ];
 @Injectable({providedIn:'root'}) class Stories {
  http=inject(HttpClient); all=signal<Story[]>(providedStories); status=signal('Connecting to the catalogue…'); query=signal(''); saved=signal<string[]>(this.load('tino.saved',[])); cart=signal<string[]>(this.load('tino.cart',[])); purchased=signal<string[]>(this.load('tino.purchases',[])); membershipUntil=signal<number>(this.load('tino.subscription',0)); page=signal<number>(this.load('tino.page',20)); notice=signal('');
@@ -33,7 +34,7 @@ isMembershipActive(){return this.membershipUntil()>Date.now();}
  resetSimulation(){this.purchased.set([]);this.membershipUntil.set(0);this.cart.set([]);this.page.set(20);for(const key of ['tino.purchases','tino.subscription','tino.cart','tino.page']){try{localStorage.removeItem(key);}catch{}}this.notice.set('Demo purchases, membership and cart have been reset.');}
  formatDemoPrice(amount:number){return this.currency+' '+amount.toFixed(2);}
  accessibleCount(){return this.all().filter(book=>this.hasAccess(book.id)).length;}
- coverImage(id:string){if(id==='tawanda-story')return '/animation/pages/page-01.jpeg';if(id==='debt-ocean')return '/covers/debt-deeper-than-ocean.svg';return '';}
+ coverImage(id:string){if(id==='tawanda-story')return '/animation/pages/page-01.jpeg';if(id==='debt-ocean')return '/covers/debt-deeper-than-ocean.svg';if(id==='gold-diamonds')return '/covers/in-search-of-gold.svg';return '';}
  bookPageUrl(page:number){return '/animation/pages/page-'+String(page).padStart(2,'0')+'.jpeg';} turn(page:number){this.page.set(page);this.persist('tino.page',page);}
 }
 @Component({selector:'app-experience',standalone:true,imports:[RouterLink,DatePipe,StoryBackdrop],templateUrl:'./experience.html'})
